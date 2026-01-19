@@ -156,6 +156,21 @@
             width: 100%;
         }
 
+        .social-icon-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-icon-btn:hover {
+            transform: translateY(-5px);
+            opacity: 1;
+        }
+
+        /* Estilo para asegurar que los iconos se vean */
+        .social-icon-btn i {
+            display: block;
+        }        
         @media (max-width: 640px) {
             .section-title { font-size: 3rem !important; }
             .flip-card { height: 280px; }
