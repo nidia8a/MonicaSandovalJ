@@ -234,12 +234,12 @@
         </div>
     </section>
 
-    <!-- SECCIÓN MI HISTORIA -->
+   <!-- SECCIÓN MI HISTORIA -->
     <section id="historia" class="py-24 bg-gray-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-12 gap-12 items-center mb-20">
                 <div class="lg:col-span-4 reveal">
-                    <div class="relative max-w-[280px] mx-auto">
+                    <div class="relative max-w-[280px] mx-auto"> <!-- Imagen un poco más pequeña -->
                         <div class="absolute -top-4 -left-4 w-20 h-20 bg-pc-light rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
                         <img src="https://i.imgur.com/DFalMGx.png" alt="Mónica Sandoval Historia" class="rounded-[2.5rem] shadow-2xl relative z-10 w-full border-4 border-white transform -rotate-3 hover:rotate-0 transition duration-500">
                     </div>
@@ -264,7 +264,7 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- TARJETA 1 -->
+                <!-- TARJETA 1: ORIGEN (Blanco) -->
                 <div class="flip-card reveal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-white border-2 border-gray-100">
@@ -275,11 +275,14 @@
                             <p class="text-gray-400 text-xs uppercase font-bold mt-4 tracking-widest">Fusagasugá & Boyacá</p>
                         </div>
                         <div class="flip-card-back bg-brand text-white">
-                            <p class="text-base leading-relaxed px-4 italic">Vengo de Fusagasugá, de una familia de clase media. Mis raíces son transportadoras boyacenses: los Sandoval y los Suárez.</p>
+                            <p class="text-base leading-relaxed px-4">
+                                Vengo de <span class="text-pc-light font-bold">Fusagasugá</span>, de una familia de clase media. Mis raíces son transportadoras boyacenses: los Sandoval y los Suárez, quienes me enseñaron que el <span class="text-pc-light font-bold">trabajo digno</span> se gana temprano.
+                            </p>
                         </div>
                     </div>
                 </div>
-                <!-- TARJETA 2 -->
+
+                <!-- TARJETA 2: MOTIVACIÓN (Azul Cyan) -->
                 <div class="flip-card reveal" style="transition-delay: 0.1s;">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-pc-light">
@@ -290,11 +293,14 @@
                             <p class="text-brand/60 text-xs uppercase font-bold mt-4 tracking-widest">Su motor principal</p>
                         </div>
                         <div class="flip-card-back bg-white text-gray-700 border-4 border-pc-light">
-                            <p class="text-base leading-relaxed px-4 italic">Soy madre soltera de una hija que es mi mayor fuerza. Sé lo que es abrirse camino en Bogotá con disciplina.</p>
+                            <p class="text-base leading-relaxed px-4">
+                                Soy madre soltera de una hija que es mi mayor fuerza. Sé lo que es abrirse camino en Bogotá con <span class="text-brand font-bold">disciplina</span> para sacar adelante a los nuestros, defendiendo la <span class="text-brand font-bold">vida y el futuro</span>.
+                            </p>
                         </div>
                     </div>
                 </div>
-                <!-- TARJETA 3 -->
+
+                <!-- TARJETA 3: PROFESIÓN (Azul Marino) -->
                 <div class="flip-card reveal" style="transition-delay: 0.2s;">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-brand">
@@ -305,7 +311,63 @@
                             <p class="text-pc-light text-xs uppercase font-bold mt-4 tracking-widest">Sector Transporte</p>
                         </div>
                         <div class="flip-card-back bg-pc-light text-brand">
-                            <p class="text-base leading-relaxed px-4 italic">Como abogada, he dedicado mi vida al sector transportador. Entiendo la realidad de quienes mueven el país.</p>
+                            <p class="text-base leading-relaxed px-4">
+                                Como abogada, he dedicado mi vida al <span class="text-white font-bold">sector transportador</span>. Entiendo que detrás de cada vehículo hay una <span class="text-white font-bold">familia</span> y un crédito que proteger frente a un sistema injusto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TARJETA 4: CONVICCIÓN (Azul Marino) -->
+                <div class="flip-card reveal" style="transition-delay: 0.3s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-brand">
+                            <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-shield-alt text-4xl text-pc-light"></i>
+                            </div>
+                            <h3 class="font-black text-white uppercase tracking-tighter">Servicio Esencial</h3>
+                            <p class="text-pc-light text-xs uppercase font-bold mt-4 tracking-widest">Defensa de la Vida</p>
+                        </div>
+                        <div class="flip-card-back bg-white text-gray-700 border-4 border-brand">
+                            <p class="text-base leading-relaxed px-4">
+                                El transporte es el <span class="text-brand font-bold">servicio esencial</span> que sostiene a Colombia. Mi compromiso es exigir <span class="text-brand font-bold">seguridad real</span> para quienes trabajan incansablemente en las carreteras.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TARJETA 5: TRAYECTORIA (Blanco) -->
+                <div class="flip-card reveal" style="transition-delay: 0.4s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100">
+                            <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-users text-4xl text-brand"></i>
+                            </div>
+                            <h3 class="font-black text-brand uppercase tracking-tighter">Liderazgo Real</h3>
+                            <p class="text-gray-400 text-xs uppercase font-bold mt-4 tracking-widest">Desde 1991</p>
+                        </div>
+                        <div class="flip-card-back bg-pc-light text-brand">
+                            <p class="text-base leading-relaxed px-4">
+                                Participé en la <span class="text-white font-bold">Constituyente de 1991</span>. Mi convicción: cuando se lidera de verdad, se <span class="text-white font-bold">escucha</span>; y cuando se representa, se <span class="text-white font-bold">cumple</span> a cabalidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TARJETA 6: COMPROMISO (Azul Cyan) -->
+                <div class="flip-card reveal" style="transition-delay: 0.5s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-pc-light">
+                            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-vote-yea text-4xl text-brand"></i>
+                            </div>
+                            <h3 class="font-black text-white uppercase tracking-tighter">Vota C 115</h3>
+                            <p class="text-brand/60 text-xs uppercase font-bold mt-4 tracking-widest">Dignidad y Unión</p>
+                        </div>
+                        <div class="flip-card-back bg-brand text-white">
+                            <p class="text-base leading-relaxed px-4">
+                                Llegaré al Congreso para <span class="text-pc-light font-bold">humanizar el transporte</span> y defender la libertad de empresa. Tu apoyo es un mensaje de <span class="text-pc-light font-bold">unión</span>. ¡Marca con confianza C 115!
+                            </p>
                         </div>
                     </div>
                 </div>
