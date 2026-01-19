@@ -305,7 +305,75 @@
             </div>
         </div>
     </section>
+    <!-- SECCIÓN V-BLOG Y RECURSOS -->
+    <section id="vblog" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Contenido Multimedia</span>
+                <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">V-Blog & <br> <span class="text-pc-light">Recursos</span></h2>
+            </div>
 
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Tarjeta 1: Video Mónica -->
+                <div class="group cursor-pointer reveal" onclick="openModal('video1')">
+                    <div class="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
+                        <img src="https://imgur.com/hhzpnCJ.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Video Mónica">
+                        <div class="absolute inset-0 bg-brand/40 group-hover:bg-brand/20 transition-colors flex items-center justify-center">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition">
+                                <i class="fas fa-play text-brand text-2xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <p class="text-[10px] font-black uppercase tracking-widest mb-2">V-Blog Episodio 1</p>
+                            <h3 class="text-2xl font-black leading-tight">Mónica Sandoval: Mi visión para Bogotá</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Video Jingle -->
+                <div class="group cursor-pointer reveal" style="transition-delay: 0.1s;" onclick="openModal('video2')">
+                    <div class="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
+                        <img src="https://imgur.com/vD9CHYh.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Video Jingle">
+                        <div class="absolute inset-0 bg-pc-light/40 group-hover:bg-pc-light/20 transition-colors flex items-center justify-center">
+                            <div class="w-20 h-20 bg-brand rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition">
+                                <i class="fas fa-music text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <p class="text-[10px] font-black uppercase tracking-widest mb-2">Música de Campaña</p>
+                            <h3 class="text-2xl font-black leading-tight">Jingle Oficial: Vamos Juntos C 115</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Artículo -->
+                <div class="group cursor-pointer reveal" style="transition-delay: 0.2s;" onclick="openModal('article1')">
+                    <div class="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
+                        <img src="https://imgur.com/4s1fXou.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Artículo">
+                        <div class="absolute inset-0 bg-gray-900/40 group-hover:bg-gray-900/20 transition-colors flex items-center justify-center">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition">
+                                <i class="fas fa-file-alt text-brand text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <p class="text-[10px] font-black uppercase tracking-widest mb-2">Opinión y Prensa</p>
+                            <h3 class="text-2xl font-black leading-tight">El transporte como pilar de la economía</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÓN DESCARGA DE RECURSOS -->
+            <div class="flex justify-center reveal">
+                <a href="https://drive.google.com/drive/folders/1ejXA734F_f5aQbXcvQzef380LCCoSLQt?usp=sharing" 
+                   target="_blank"
+                   class="inline-flex items-center gap-4 bg-pc-light text-brand px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest shadow-xl hover:bg-brand hover:text-white transform hover:-translate-y-1 transition duration-300">
+                    <i class="fab fa-google-drive text-2xl"></i>
+                    Descarga Recursos de Campaña
+                </a>
+            </div>
+        </div>
+    </section>
     <!-- SECCIÓN PROPUESTAS -->
     <section id="propuestas" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
