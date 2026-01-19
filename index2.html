@@ -56,6 +56,80 @@
             border: 3px solid var(--blue-pc-dark);
         }
 
+        /* Flip Card Styles Mejoradas */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 320px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .flip-card-front {
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .flip-card-front h3 {
+            font-size: 1.75rem;
+            line-height: 1.1;
+            margin-top: 1rem;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-blur: 5px;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+        }
+
         .audio-player-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-blur: 10px;
@@ -81,14 +155,10 @@
             width: 100%;
         }
 
-        .video-card {
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .video-card:hover { transform: scale(1.03); }
-
         @media (max-width: 640px) {
             .section-title { font-size: 3rem !important; }
+            .flip-card { height: 280px; }
+            .flip-card-front h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -125,9 +195,9 @@
             <div class="hidden lg:flex items-center space-x-8 font-bold text-[10px] uppercase tracking-[0.2em] text-gray-600">
                 <a href="#inicio" class="nav-link hover:text-brand transition">Inicio</a>
                 <a href="#historia" class="nav-link hover:text-brand transition">Mi Historia</a>
+                <a href="#vblog" class="nav-link hover:text-brand transition">V-Blog</a>
                 <a href="#propuestas" class="nav-link hover:text-brand transition">Propuestas</a>
                 <a href="#votar" class="nav-link hover:text-brand transition">Únete</a>
-                <a href="#escucha" class="nav-link hover:text-brand transition text-pc-light">Hablemos</a>
                 <div class="w-[1px] h-6 bg-gray-200"></div>
                 <span class="text-brand font-black bg-gray-50 px-3 py-1 rounded-md">C-115</span>
             </div>
@@ -136,7 +206,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Sección 1) -->
+    <!-- Hero Section -->
     <section id="inicio" class="hero-gradient min-h-screen flex items-center pt-32">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div class="text-white text-center lg:text-left">
@@ -152,7 +222,6 @@
                 <p class="text-xl serif-font mb-10 opacity-90 max-w-lg mx-auto lg:mx-0 leading-relaxed italic border-l-0 lg:border-l-4 border-pc-light lg:pl-6">
                     "Defiendo el transporte como un servicio esencial que mueve a Colombia, y la libertad de empresa como herramienta de prosperidad."
                 </p>
-                <!-- Botones de Acción Ajustados (Orden: Historia, Propuestas, Vota) -->
                 <div class="flex flex-wrap justify-center lg:justify-start gap-3">
                     <a href="#historia" class="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-white/20 transition">Mi Historia</a>
                     <a href="#propuestas" class="bg-white text-brand px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider shadow-lg transform hover:scale-105 transition">Propuestas</a>
@@ -170,7 +239,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-12 gap-12 items-center mb-20">
                 <div class="lg:col-span-4 reveal">
-                    <div class="relative max-w-[280px] mx-auto"> <!-- Imagen un poco más pequeña -->
+                    <div class="relative max-w-[280px] mx-auto">
                         <div class="absolute -top-4 -left-4 w-20 h-20 bg-pc-light rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
                         <img src="https://i.imgur.com/DFalMGx.png" alt="Mónica Sandoval Historia" class="rounded-[2.5rem] shadow-2xl relative z-10 w-full border-4 border-white transform -rotate-3 hover:rotate-0 transition duration-500">
                     </div>
@@ -195,7 +264,7 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- TARJETA 1: ORIGEN (Blanco) -->
+                <!-- TARJETA 1 -->
                 <div class="flip-card reveal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-white border-2 border-gray-100">
@@ -206,14 +275,11 @@
                             <p class="text-gray-400 text-xs uppercase font-bold mt-4 tracking-widest">Fusagasugá & Boyacá</p>
                         </div>
                         <div class="flip-card-back bg-brand text-white">
-                            <p class="text-base leading-relaxed px-4">
-                                Vengo de <span class="text-pc-light font-bold">Fusagasugá</span>, de una familia de clase media. Mis raíces son transportadoras boyacenses: los Sandoval y los Suárez, quienes me enseñaron que el <span class="text-pc-light font-bold">trabajo digno</span> se gana temprano.
-                            </p>
+                            <p class="text-base leading-relaxed px-4 italic">Vengo de Fusagasugá, de una familia de clase media. Mis raíces son transportadoras boyacenses: los Sandoval y los Suárez.</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- TARJETA 2: MOTIVACIÓN (Azul Cyan) -->
+                <!-- TARJETA 2 -->
                 <div class="flip-card reveal" style="transition-delay: 0.1s;">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-pc-light">
@@ -224,14 +290,11 @@
                             <p class="text-brand/60 text-xs uppercase font-bold mt-4 tracking-widest">Su motor principal</p>
                         </div>
                         <div class="flip-card-back bg-white text-gray-700 border-4 border-pc-light">
-                            <p class="text-base leading-relaxed px-4">
-                                Soy madre soltera de una hija que es mi mayor fuerza. Sé lo que es abrirse camino en Bogotá con <span class="text-brand font-bold">disciplina</span> para sacar adelante a los nuestros, defendiendo la <span class="text-brand font-bold">vida y el futuro</span>.
-                            </p>
+                            <p class="text-base leading-relaxed px-4 italic">Soy madre soltera de una hija que es mi mayor fuerza. Sé lo que es abrirse camino en Bogotá con disciplina.</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- TARJETA 3: PROFESIÓN (Azul Marino) -->
+                <!-- TARJETA 3 -->
                 <div class="flip-card reveal" style="transition-delay: 0.2s;">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-brand">
@@ -242,69 +305,14 @@
                             <p class="text-pc-light text-xs uppercase font-bold mt-4 tracking-widest">Sector Transporte</p>
                         </div>
                         <div class="flip-card-back bg-pc-light text-brand">
-                            <p class="text-base leading-relaxed px-4">
-                                Como abogada, he dedicado mi vida al <span class="text-white font-bold">sector transportador</span>. Entiendo que detrás de cada vehículo hay una <span class="text-white font-bold">familia</span> y un crédito que proteger frente a un sistema injusto.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TARJETA 4: CONVICCIÓN (Azul Marino) -->
-                <div class="flip-card reveal" style="transition-delay: 0.3s;">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front bg-brand">
-                            <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-shield-alt text-4xl text-pc-light"></i>
-                            </div>
-                            <h3 class="font-black text-white uppercase tracking-tighter">Servicio Esencial</h3>
-                            <p class="text-pc-light text-xs uppercase font-bold mt-4 tracking-widest">Defensa de la Vida</p>
-                        </div>
-                        <div class="flip-card-back bg-white text-gray-700 border-4 border-brand">
-                            <p class="text-base leading-relaxed px-4">
-                                El transporte es el <span class="text-brand font-bold">servicio esencial</span> que sostiene a Colombia. Mi compromiso es exigir <span class="text-brand font-bold">seguridad real</span> para quienes trabajan incansablemente en las carreteras.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TARJETA 5: TRAYECTORIA (Blanco) -->
-                <div class="flip-card reveal" style="transition-delay: 0.4s;">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front bg-white border-2 border-gray-100">
-                            <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-users text-4xl text-brand"></i>
-                            </div>
-                            <h3 class="font-black text-brand uppercase tracking-tighter">Liderazgo Real</h3>
-                            <p class="text-gray-400 text-xs uppercase font-bold mt-4 tracking-widest">Desde 1991</p>
-                        </div>
-                        <div class="flip-card-back bg-pc-light text-brand">
-                            <p class="text-base leading-relaxed px-4">
-                                Participé en la <span class="text-white font-bold">Constituyente de 1991</span>. Mi convicción: cuando se lidera de verdad, se <span class="text-white font-bold">escucha</span>; y cuando se representa, se <span class="text-white font-bold">cumple</span> a cabalidad.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TARJETA 6: COMPROMISO (Azul Cyan) -->
-                <div class="flip-card reveal" style="transition-delay: 0.5s;">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front bg-pc-light">
-                            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-vote-yea text-4xl text-brand"></i>
-                            </div>
-                            <h3 class="font-black text-white uppercase tracking-tighter">Vota C 115</h3>
-                            <p class="text-brand/60 text-xs uppercase font-bold mt-4 tracking-widest">Dignidad y Unión</p>
-                        </div>
-                        <div class="flip-card-back bg-brand text-white">
-                            <p class="text-base leading-relaxed px-4">
-                                Llegaré al Congreso para <span class="text-pc-light font-bold">humanizar el transporte</span> y defender la libertad de empresa. Tu apoyo es un mensaje de <span class="text-pc-light font-bold">unión</span>. ¡Marca con confianza C 115!
-                            </p>
+                            <p class="text-base leading-relaxed px-4 italic">Como abogada, he dedicado mi vida al sector transportador. Entiendo la realidad de quienes mueven el país.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- SECCIÓN V-BLOG Y RECURSOS -->
     <section id="vblog" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
@@ -374,15 +382,15 @@
             </div>
         </div>
     </section>
+
     <!-- SECCIÓN PROPUESTAS -->
-    <section id="propuestas" class="py-24 bg-white">
+    <section id="propuestas" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6 reveal">
                 <div class="max-w-2xl text-center lg:text-left">
                     <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Visión de Ciudad</span>
                     <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">Nuestras <br> <span class="text-pc-light">Propuestas</span></h2>
                 </div>
-                <a href="#" class="bg-brand text-white px-8 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-pc-light hover:text-brand transition shadow-md">Ver todas las propuestas</a>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12">
@@ -411,78 +419,32 @@
 
     <!-- Cómo votar / Únete -->
     <section id="votar" class="py-24 bg-brand text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="font-black text-5xl lg:text-7xl mb-4 leading-none uppercase">Es tiempo de marcar <br> <span class="text-pc-light">Mónica Sandoval</span></h2>
-                <p class="text-white/60 font-bold uppercase tracking-widest text-sm">Sigue estos tres pasos sencillos en el tarjetón</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-6 reveal">
-                    <div class="bg-white/5 p-8 rounded-[2rem] border border-white/10 flex items-center gap-6">
-                        <div class="w-16 h-16 bg-pc-light text-brand rounded-2xl flex items-center justify-center font-black text-3xl shrink-0">1</div>
-                        <p class="text-xl font-bold uppercase tracking-tighter">Pide el tarjetón para Cámara - Bogotá.</p>
-                    </div>
-                    <div class="bg-white/5 p-8 rounded-[2rem] border border-white/10 flex items-center gap-6">
-                        <div class="w-16 h-16 bg-pc-light text-brand rounded-2xl flex items-center justify-center font-black text-3xl shrink-0">2</div>
-                        <p class="text-xl font-bold uppercase tracking-tighter">Ubica y marca el Logo del Partido Conservador.</p>
-                    </div>
-                    <div class="bg-pc-light p-8 rounded-[2rem] flex items-center gap-6 transform hover:scale-105 transition shadow-2xl">
-                        <div class="w-16 h-16 bg-brand text-white rounded-2xl flex items-center justify-center font-black text-3xl shrink-0">3</div>
-                        <p class="text-xl font-black text-brand uppercase tracking-tighter">Marca con una X el número 115.</p>
-                    </div>
-                </div>
-
-                <div class="reveal">
-                    <div class="bg-white p-6 rounded-[3rem] shadow-2xl border-8 border-pc-light/20 relative max-w-sm mx-auto">
-                        <img src="https://i.imgur.com/NZBJ3SM.png" alt="Instrucción Voto C115" class="w-full h-auto rounded-[2rem]">
-                        <div class="absolute -bottom-6 -right-6 bg-pc-light text-brand px-10 py-6 rounded-3xl shadow-2xl border-4 border-brand">
-                            <p class="text-5xl font-black leading-none text-center">C 115</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hablemos (Contacto) -->
-    <section id="escucha" class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <h2 class="font-black text-5xl text-brand uppercase mb-12 leading-none">HABLEMOS DE BOGOTÁ <br> <span class="text-pc-light text-3xl uppercase">Tu voz es mi ruta</span></h2>
-            <form class="space-y-4">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Nombre completo" class="w-full bg-gray-50 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-pc-light border border-gray-100">
-                    <input type="text" placeholder="WhatsApp / Teléfono" class="w-full bg-gray-50 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-pc-light border border-gray-100">
-                </div>
-                <textarea rows="4" placeholder="Cuéntame tu problemática o propuesta para la ciudad..." class="w-full bg-gray-50 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-pc-light border border-gray-100"></textarea>
-                <button type="button" class="w-full bg-brand text-white py-5 rounded-2xl font-black text-lg uppercase shadow-xl hover:bg-pc-light hover:text-brand transition duration-300">Enviar Propuesta</button>
-            </form>
-            <div class="mt-12 flex justify-center items-center gap-4 text-gray-400">
-                <i class="fas fa-envelope text-pc-light"></i>
-                <p class="text-sm font-bold uppercase tracking-widest text-center">hablaconmigo@monicasandovalj.com</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-50 py-20 text-center border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center gap-6 mb-12">
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-tiktok"></i></a>
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-whatsapp"></i></a>
+            <h2 class="font-black text-5xl lg:text-7xl mb-12 uppercase leading-none">VOTA <span class="text-pc-light">C 115</span></h2>
+            <div class="bg-white p-6 rounded-[3rem] shadow-2xl max-w-sm mx-auto border-8 border-pc-light/20">
+                <img src="https://i.imgur.com/NZBJ3SM.png" alt="Tarjetón" class="w-full h-auto rounded-[2rem]">
             </div>
-            <p class="text-brand font-black text-2xl mb-1 uppercase tracking-tighter text-center">Mónica Sandoval</p>
-            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mb-12 text-center">Cámara por Bogotá | Lista Preferente C 115</p>
-            <div class="inline-block border border-gray-200 px-6 py-2 rounded-full mb-8">
-                <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest text-center">Publicidad Política Pagada - Partido Conservador Colombiano</p>
-            </div>
-            <p class="text-[8px] text-gray-300 uppercase tracking-[0.2em]">&copy; 2024 Mónica Sandoval. Todos los derechos reservados.</p>
         </div>
+    </section>
+
+    <!-- Modales de Multimedia -->
+    <div id="mediaModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-4xl hover:text-pc-light">&times;</button>
+            <div id="modalBody" class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl p-4 min-h-[400px] flex items-center justify-center">
+                <!-- El contenido se carga dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-50 py-20 text-center border-t border-gray-100">
+        <p class="text-brand font-black text-2xl uppercase tracking-tighter">Mónica Sandoval</p>
+        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Cámara por Bogotá | Lista Preferente C 115</p>
+        <p class="text-[8px] text-gray-300 uppercase tracking-[0.2em]">&copy; 2024 Mónica Sandoval. Todos los derechos reservados.</p>
     </footer>
 
     <script>
+        // Animaciones de scroll
         window.addEventListener('scroll', () => {
             const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(reveal => {
@@ -492,6 +454,43 @@
             });
         });
         document.addEventListener('DOMContentLoaded', () => window.dispatchEvent(new Event('scroll')));
+
+        // Lógica de Modales
+        const modal = document.getElementById('mediaModal');
+        const modalBody = document.getElementById('modalBody');
+
+        function openModal(type) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Evitar scroll al ver video
+            
+            if (type === 'video1') {
+                modalBody.innerHTML = `<video controls autoplay class="w-full rounded-[1.5rem]"><source src="https://i.imgur.com/hhzpnCJ.mp4" type="video/mp4">Tu navegador no soporta video.</video>`;
+            } else if (type === 'video2') {
+                modalBody.innerHTML = `<video controls autoplay class="w-full rounded-[1.5rem]"><source src="https://i.imgur.com/vD9CHYh.mp4" type="video/mp4">Tu navegador no soporta video.</video>`;
+            } else if (type === 'article1') {
+                modalBody.innerHTML = `
+                    <div class="p-8 lg:p-12 text-left w-full">
+                        <span class="text-pc-light font-black uppercase text-xs tracking-widest mb-4 block">Lectura Recomendada</span>
+                        <h2 class="text-4xl font-black text-brand mb-6 uppercase tracking-tighter">El transporte como pilar de la economía colombiana</h2>
+                        <div class="prose prose-lg serif-font text-gray-700 leading-relaxed">
+                            <p class="mb-4">Bogotá no puede detenerse. El transporte es mucho más que vehículos en la calle; es la columna vertebral que permite que la comida llegue a nuestras mesas, que los trabajadores lleguen a sus empleos y que las familias se conecten.</p>
+                            <p class="mb-4">Mi compromiso desde la Cámara de Representantes será legislar para proteger a los pequeños y grandes transportadores de las cargas tributarias excesivas y de la inseguridad en las vías. Es momento de reconocer el transporte como un derecho fundamental para el desarrollo económico.</p>
+                            <p class="font-bold text-brand italic">"Mover a Bogotá es mover la esperanza de miles de ciudadanos que creen en el trabajo honesto." - Mónica Sandoval</p>
+                        </div>
+                        <button onclick="closeModal()" class="mt-8 bg-brand text-white px-8 py-3 rounded-full font-bold uppercase text-xs tracking-widest">Cerrar Artículo</button>
+                    </div>`;
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            modalBody.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) closeModal();
+        }
     </script>
 </body>
 </html>
