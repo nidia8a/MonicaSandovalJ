@@ -570,70 +570,107 @@
         </div>
     </section>
 
-    <!-- Modales de Multimedia -->
-    <div id="mediaModal" class="modal">
-        <div class="modal-content">
-            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-4xl hover:text-pc-light">&times;</button>
-            <div id="modalBody" class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl p-4 min-h-[400px] flex items-center justify-center">
-                <!-- El contenido se carga dinámicamente -->
+   <!-- Footer Actualizado con X y Threads -->
+    <footer class="bg-gray-50 py-20 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col items-center text-center">
+                
+                <!-- Redes Sociales (Iconos Sutiles) -->
+                <div class="flex flex-wrap justify-center items-center gap-8 mb-10">
+                    <!-- X (Twitter) -->
+                    <a href="https://x.com/MonySandov" target="_blank" class="social-icon-btn text-gray-400 hover:text-black" title="X (Twitter)">
+                        <i class="fa-brands fa-x-twitter text-2xl"></i>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/Monicasandovalj" target="_blank" class="social-icon-btn text-gray-400 hover:text-pink-600" title="Instagram">
+                        <i class="fa-brands fa-instagram text-2xl"></i>
+                    </a>
+                    
+                    <!-- Facebook -->
+                    <a href="https://facebook.com/MonicaSandovalJ" target="_blank" class="social-icon-btn text-gray-400 hover:text-blue-700" title="Facebook">
+                        <i class="fa-brands fa-facebook-f text-2xl"></i>
+                    </a>
+                    
+                    <!-- YouTube -->
+                    <a href="https://youtube.com/@monicasandovalj" target="_blank" class="social-icon-btn text-gray-400 hover:text-red-600" title="YouTube">
+                        <i class="fa-brands fa-youtube text-2xl"></i>
+                    </a>
+                    
+                    <!-- Threads -->
+                    <a href="https://www.threads.net/@monicasandovalj" target="_blank" class="social-icon-btn text-gray-400 hover:text-black" title="Threads">
+                        <i class="fa-brands fa-threads text-2xl"></i>
+                    </a>
+                    
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/573239244115" target="_blank" class="social-icon-btn text-gray-400 hover:text-green-500" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    </a>
+                </div>
+
+                <!-- Datos de Campaña -->
+                <div class="mb-8">
+                    <h3 class="text-brand font-black text-3xl uppercase tracking-tighter">Mónica Sandoval</h3>
+                    <p class="text-gray-400 text-[10px] font-black uppercase tracking-[0.4em] mt-2">Cámara por Bogotá | Lista Preferente C 115</p>
+                </div>
+
+                <!-- Contacto Directo -->
+                <div class="flex flex-col md:flex-row gap-6 md:gap-12 items-center text-[11px] font-black uppercase tracking-widest text-brand/70 mb-12">
+                    <a href="https://wa.me/573239244115" target="_blank" class="hover:text-pc-light transition">
+                        <i class="fas fa-phone-alt mr-2 text-pc-light"></i> 323 9244 115
+                    </a>
+                    <a href="mailto:hablaconmigo@monicasandoval.com" class="hover:text-pc-light transition">
+                        <i class="fas fa-envelope mr-2 text-pc-light"></i> hablaconmigo@monicasandoval.com
+                    </a>
+                </div>
+
+                <div class="w-16 h-[2px] bg-gray-200 mb-8"></div>
+                <p class="text-[9px] text-gray-300 uppercase font-bold tracking-[0.2em]">&copy; 2024 Mónica Sandoval. Publicidad Política Pagada.</p>
             </div>
+        </div>
+    </footer>
+
+    <!-- Modal Multimedia -->
+    <div id="mediaModal" class="modal">
+        <div class="fixed top-6 right-6 text-white text-3xl cursor-pointer z-[2100]" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="flex items-center justify-center min-h-screen p-6">
+            <div id="modalContainer" class="w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl"></div>
         </div>
     </div>
 
-    <footer class="bg-gray-50 py-20 text-center border-t border-gray-100">
-        <p class="text-brand font-black text-2xl uppercase tracking-tighter">Mónica Sandoval</p>
-        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Cámara por Bogotá | Lista Preferente C 115</p>
-        <p class="text-[8px] text-gray-300 uppercase tracking-[0.2em]">&copy; 2024 Mónica Sandoval. Todos los derechos reservados.</p>
-    </footer>
-
     <script>
-        // Animaciones de scroll
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveal.getBoundingClientRect().top;
-                if (revealTop < windowHeight - 100) reveal.classList.add('active');
+        // Animaciones de aparición
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        });
-        document.addEventListener('DOMContentLoaded', () => window.dispatchEvent(new Event('scroll')));
+        }, { threshold: 0.1 });
 
-        // Lógica de Modales
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Modales
         const modal = document.getElementById('mediaModal');
-        const modalBody = document.getElementById('modalBody');
+        const container = document.getElementById('modalContainer');
 
         function openModal(type) {
             modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Evitar scroll al ver video
-            
-            if (type === 'video1') {
-                modalBody.innerHTML = `<video controls autoplay class="w-full rounded-[1.5rem]"><source src="https://i.imgur.com/hhzpnCJ.mp4" type="video/mp4">Tu navegador no soporta video.</video>`;
-            } else if (type === 'video2') {
-                modalBody.innerHTML = `<video controls autoplay class="w-full rounded-[1.5rem]"><source src="https://i.imgur.com/vD9CHYh.mp4" type="video/mp4">Tu navegador no soporta video.</video>`;
-            } else if (type === 'article1') {
-                modalBody.innerHTML = `
-                    <div class="p-8 lg:p-12 text-left w-full">
-                        <span class="text-pc-light font-black uppercase text-xs tracking-widest mb-4 block">Lectura Recomendada</span>
-                        <h2 class="text-4xl font-black text-brand mb-6 uppercase tracking-tighter">El transporte como pilar de la economía colombiana</h2>
-                        <div class="prose prose-lg serif-font text-gray-700 leading-relaxed">
-                            <p class="mb-4">Bogotá no puede detenerse. El transporte es mucho más que vehículos en la calle; es la columna vertebral que permite que la comida llegue a nuestras mesas, que los trabajadores lleguen a sus empleos y que las familias se conecten.</p>
-                            <p class="mb-4">Mi compromiso desde la Cámara de Representantes será legislar para proteger a los pequeños y grandes transportadores de las cargas tributarias excesivas y de la inseguridad en las vías. Es momento de reconocer el transporte como un derecho fundamental para el desarrollo económico.</p>
-                            <p class="font-bold text-brand italic">"Mover a Bogotá es mover la esperanza de miles de ciudadanos que creen en el trabajo honesto." - Mónica Sandoval</p>
-                        </div>
-                        <button onclick="closeModal()" class="mt-8 bg-brand text-white px-8 py-3 rounded-full font-bold uppercase text-xs tracking-widest">Cerrar Artículo</button>
-                    </div>`;
+            document.body.style.overflow = 'hidden';
+            if(type === 'video1') {
+                container.innerHTML = '<div class="aspect-video"><iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe></div>';
+            } else if(type === 'video2') {
+                container.innerHTML = '<div class="p-12 text-center"><i class="fas fa-music text-6xl text-brand mb-6"></i><h2 class="text-3xl font-black uppercase mb-4">Jingle Oficial</h2><audio controls class="w-full"><source src="jingle.mp3"></audio></div>';
             }
         }
 
         function closeModal() {
             modal.style.display = 'none';
-            modalBody.innerHTML = '';
+            container.innerHTML = '';
             document.body.style.overflow = 'auto';
         }
 
-        window.onclick = function(event) {
-            if (event.target == modal) closeModal();
-        }
+        window.onclick = (e) => { if (e.target == modal) closeModal(); }
     </script>
 </body>
 </html>
