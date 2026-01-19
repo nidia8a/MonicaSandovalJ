@@ -705,10 +705,28 @@
         function openModal(type) {
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
-            if(type === 'video1') {
-                container.innerHTML = '<div class="aspect-video"><iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe></div>';
-            } else if(type === 'video2') {
-                container.innerHTML = '<div class="p-12 text-center"><i class="fas fa-music text-6xl text-brand mb-6"></i><h2 class="text-3xl font-black uppercase mb-4">Jingle Oficial</h2><audio controls class="w-full"><source src="jingle.mp3"></audio></div>';
+            if (type === 'video1') {
+                container.className = "modal-container bg-black max-w-4xl mx-auto shadow-2xl";
+                container.innerHTML = `<div class="aspect-video w-full"><video controls autoplay class="w-full h-full"><source src="https://i.imgur.com/hhzpnCJ.mp4" type="video/mp4"></video></div>`;
+            } else if (type === 'video2') {
+                container.className = "modal-container bg-black max-w-4xl mx-auto shadow-2xl";
+                container.innerHTML = `<div class="aspect-video w-full"><video controls autoplay class="w-full h-full"><source src="https://i.imgur.com/vD9CHYh.mp4" type="video/mp4"></video></div>`;
+            } else if (type === 'article1') {
+                container.className = "modal-container bg-white max-w-3xl";
+                container.innerHTML = `
+                    <div class="p-8 md:p-16">
+                        <span class="inline-block bg-pc-light text-brand px-4 py-1 rounded-full text-[10px] font-black uppercase mb-6">Opinión</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-brand uppercase leading-none mb-8">El Transporte: <br><span class="text-pc-light">Pilar Económico</span></h2>
+                        <div class="serif-font text-lg md:text-xl text-gray-700 space-y-6 leading-relaxed mb-10">
+                            <p class="font-bold italic text-brand border-l-4 border-brand pl-4">"No podemos ver el transporte solo como un negocio, es la vena que permite que Bogotá viva."</p>
+                            <p>Mi compromiso es con los conductores y con el ciudadano que merece rutas seguras y eficientes. Bogotá no aguanta más improvisación.</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <a href="/El_transporte.html" class="bg-brand text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest shadow-xl hover:bg-pc-light hover:text-brand transition duration-300">
+                                Lee el artículo completo
+                            </a>
+                        </div>
+                    </div>`;
             }
         }
 
