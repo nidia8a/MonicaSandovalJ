@@ -445,36 +445,77 @@
         </div>
     </section>
 
-    <!-- SECCIÓN PROPUESTAS -->
+    <!-- SECCIÓN PROPUESTAS (REDISEÑADA A FLIP CARDS) -->
     <section id="propuestas" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6 reveal">
-                <div class="max-w-2xl text-center lg:text-left">
-                    <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Visión de Ciudad</span>
-                    <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">Nuestras <br> <span class="text-pc-light">Propuestas</span></h2>
-                </div>
+            <div class="text-center mb-16 reveal">
+                <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Visión de Ciudad</span>
+                <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">Nuestras <br> <span class="text-pc-light">Propuestas</span></h2>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12">
-                <article class="group reveal">
-                    <div class="h-[400px] rounded-[3rem] overflow-hidden mb-8 shadow-2xl bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1541888941255-081d746dbdba?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Movilidad">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- PROPUESTA 1: TRANSPORTE LEGAL -->
+                <div class="flip-card reveal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100 p-0 overflow-hidden">
+                            <div class="h-1/2 w-full">
+                                <img src="https://imgur.com/nFIh1Z3.png" class="w-full h-full object-cover" alt="Defensa del Transporte Legal">
+                            </div>
+                            <div class="h-1/2 flex flex-col justify-center p-6">
+                                <h3 class="font-black text-brand uppercase tracking-tighter leading-tight">Defensa del Transporte Legal</h3>
+                                <p class="text-pc-light text-[10px] font-bold uppercase mt-2 tracking-widest">Garantía Jurídica</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-brand text-white text-left">
+                            <h4 class="font-black text-pc-light uppercase text-sm mb-4">Moviendo a Bogotá</h4>
+                            <p class="text-base leading-relaxed serif-font italic">
+                                "Luchamos por la formalidad y el respeto a quienes cumplen la ley. Sin legalidad no hay progreso real en nuestras vías."
+                            </p>
+                        </div>
                     </div>
-                    <time class="text-[10px] font-black uppercase text-gray-400 tracking-[0.3em] mb-4 block">Movilidad Sostenible</time>
-                    <h3 class="text-3xl font-black text-brand mb-4 group-hover:text-pc-light transition">Formalización: El motor de la seguridad vial.</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6 italic">"Buscamos que el transporte público sea legal, moderno y digno para quienes lo operan."</p>
-                    <span class="text-brand font-black text-xs uppercase border-b-2 border-pc-light pb-1 cursor-pointer">Seguir leyendo</span>
-                </article>
+                </div>
 
-                <article class="group reveal" style="transition-delay: 0.1s;">
-                    <div class="h-[400px] rounded-[3rem] overflow-hidden mb-8 shadow-2xl bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2080&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Seguridad">
+                <!-- PROPUESTA 2: LIBRE EMPRESA -->
+                <div class="flip-card reveal" style="transition-delay: 0.1s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100 p-0 overflow-hidden">
+                            <div class="h-1/2 w-full">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Libre Empresa">
+                            </div>
+                            <div class="h-1/2 flex flex-col justify-center p-6">
+                                <h3 class="font-black text-brand uppercase tracking-tighter leading-tight">Defensa de la Libre Empresa</h3>
+                                <p class="text-pc-light text-[10px] font-bold uppercase mt-2 tracking-widest">Prosperidad Económica</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-pc-light text-brand text-left">
+                            <h4 class="font-black text-brand uppercase text-sm mb-4">Motor de Cambio</h4>
+                            <p class="text-base leading-relaxed serif-font italic">
+                                "Protegemos la libertad de emprender como herramienta fundamental para generar empleo y bienestar en cada rincón de la ciudad."
+                            </p>
+                        </div>
                     </div>
-                    <time class="text-[10px] font-black uppercase text-gray-400 tracking-[0.3em] mb-4 block">Seguridad Ciudadana</time>
-                    <h3 class="text-3xl font-black text-brand mb-4 group-hover:text-pc-light transition">Protección integral para los transportadores.</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6 italic">"Nuestra meta es vigilancia técnica y jurídica para que cada transportador regrese seguro a casa."</p>
-                    <span class="text-brand font-black text-xs uppercase border-b-2 border-pc-light pb-1 cursor-pointer">Seguir leyendo</span>
-                </article>
+                </div>
+
+                <!-- PROPUESTA 3: SEGURIDAD VIAL -->
+                <div class="flip-card reveal" style="transition-delay: 0.2s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100 p-0 overflow-hidden">
+                            <div class="h-1/2 w-full">
+                                <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2080&auto=format&fit=crop" class="w-full h-full object-cover" alt="Seguridad Vial">
+                            </div>
+                            <div class="h-1/2 flex flex-col justify-center p-6">
+                                <h3 class="font-black text-brand uppercase tracking-tighter leading-tight">Formalización & Seguridad Vial</h3>
+                                <p class="text-pc-light text-[10px] font-bold uppercase mt-2 tracking-widest">Protección Integral</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-brand text-white text-left">
+                            <h4 class="font-black text-pc-light uppercase text-sm mb-4">Vías Seguras</h4>
+                            <p class="text-base leading-relaxed serif-font italic">
+                                "La formalización es el motor que nos permite exigir y garantizar una seguridad vial técnica para conductores y peatones."
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
