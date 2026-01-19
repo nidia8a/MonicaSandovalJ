@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo | Por un transporte público legal y moderno - Mónica Sandoval</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        :root {
+            --blue-pc-dark: #002D5A; 
+            --blue-pc-light: #00AEEF;
+            --white: #FFFFFF;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        .serif-font { font-family: 'Lora', serif; }
+        .bg-brand { background-color: var(--blue-pc-dark); }
+        .text-brand { color: var(--blue-pc-dark); }
+        .bg-pc-light { background-color: var(--blue-pc-light); }
+        .text-pc-light { color: var(--blue-pc-light); }
+
+        .article-hero {
+            background: linear-gradient(rgba(0,45,90,0.05), rgba(255,255,255,1));
+        }
+
+        .drop-cap::first-letter {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            float: left;
+            line-height: 1;
+            padding-right: 8px;
+            color: var(--blue-pc-light);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--blue-pc-light);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Navegación (Actualizada con enlaces externos) -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://i.imgur.com/e50lIzf.png" alt="Logo Partido Conservador" class="h-10">
+                <div class="text-brand font-black text-xl tracking-tighter leading-none">
+                    MÓNICA <span class="text-pc-light">SANDOVAL</span>
+                    <div class="text-[9px] text-gray-400 font-bold tracking-[0.2em] mt-1">CÁMARA POR BOGOTÁ</div>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center space-x-8 font-bold text-[10px] uppercase tracking-[0.2em] text-gray-600">
+                <a href="https://www.monicasandovalj.com" class="nav-link hover:text-brand transition">Inicio</a>
+                <a href="https://www.monicasandovalj.com#vblog" class="nav-link hover:text-brand transition">V-Blog</a>
+                <a href="https://www.monicasandovalj.com#votar" class="nav-link hover:text-brand transition">Votar</a>
+                <a href="https://www.monicasandovalj.com" class="text-brand font-black bg-gray-50 px-3 py-1 rounded-md hover:bg-pc-light/10 transition">C-115</a>
+            </div>
+            <a href="mailto:hablaconmigo@monicasandovalj.com" class="bg-brand text-white px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg hover:bg-pc-light hover:text-brand transition duration-300">Escríbeme</a>
+        </div>
+    </nav>
+
+    <!-- Encabezado de artículo -->
+    <header class="pt-40 pb-20 article-hero px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-block bg-pc-light text-brand px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6">Columna de Opinión</span>
+            <h1 class="font-black text-5xl lg:text-7xl text-brand uppercase leading-none tracking-tighter mb-8">
+                Por un transporte <br> <span class="text-pc-light">público legal y moderno</span>
+            </h1>
+            <div class="flex items-center justify-center gap-4 text-gray-400 font-bold text-[10px] uppercase tracking-widest">
+                <span>Por: Mónica Sandoval</span>
+                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                <span>Bogotá, 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cuerpo del Artículo -->
+    <article class="pb-24 px-6">
+        <div class="max-w-3xl mx-auto">
+            
+            <div class="serif-font text-xl md:text-2xl leading-relaxed text-gray-700 space-y-8">
+                
+                <p class="drop-cap">
+                    Los colombianos creemos en un Estado Social de Derecho, en una democracia donde las reglas están claras: cumplimos deberes, ejercemos derechos, y confiamos en que las instituciones cuidan nuestra vida, honra y bienes. También creemos que movernos libremente por el país es un derecho y que nada debería amenazar nuestra integridad ni a nuestras familias.
+                </p>
+
+                <p>
+                    Sin embargo, para los transportadores esa promesa se rompe todos los días. Tenemos normas de transporte obsoletas, que no responden a una dinámica moderna y tecnológica desde hace varias décadas, exceso de regulaciones que debilitan el sector y ponen en duda la transparencia e imparcialidad de las autoridades. Además, tenemos un gobierno que no planifica y que muchas veces parece ver en esta industria un botín para imponer más tasas, impuestos y sanciones.
+                </p>
+
+                <div class="bg-gray-50 border-l-8 border-brand p-8 my-12 rounded-r-3xl italic font-bold text-brand">
+                    "En las calles y carreteras el transportador enfrenta lo más duro: el servicio ilegal que compite sin reglas; la inseguridad que ya no es percepción sino realidad."
+                </div>
+
+                <p>
+                    Esto golpea la propiedad privada, la libertad de empresa, el transporte como servicio público y sobre todo, la seguridad personal de quienes sostienen a Colombia con su inversión, largas jornadas de trabajo y una vida difícil en carretera.
+                </p>
+
+                <p>
+                    Por eso este mensaje es un llamado directo a la unidad: <span class="text-brand font-black">transportadores y ciudadanos, si no caminamos juntos, seguirán decidiendo por nosotros</span> y cada vez estaremos más divididos. Hay una verdad simple que no se puede seguir aplazando: lo que no se representa, no se prioriza.
+                </p>
+
+                <div class="py-12 text-center border-t border-b border-gray-100 mt-16">
+                    <h3 class="font-black text-brand uppercase text-2xl mb-6">POR UN LEGAL Y MODERNO TRANSPORTE PÚBLICO</h3>
+                    <div class="space-y-4 text-gray-600">
+                        <p>Cada vez que un transportador sale a trabajar, su familia lo espera.</p>
+                        <p>Cada vez que la ilegalidad gana, perdemos todos.</p>
+                        <p>Cada vez que el miedo manda en la vía, se encarece la vida y se rompe la confianza.</p>
+                    </div>
+                </div>
+
+                <p class="pt-8">
+                    Por eso tu voto no es “uno más”: es el mecanismo real que cambia quién habla por ti y quién te defiende cuando vengan nuevas reglas, nuevas cargas o nuevas decisiones.
+                </p>
+
+            </div>
+
+            <!-- CTA final (Actualizado con enlace principal) -->
+            <div class="mt-20 bg-brand rounded-[3rem] p-10 text-center text-white shadow-2xl overflow-hidden relative">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fas fa-vote-yea text-9xl"></i>
+                </div>
+                <h4 class="font-black text-3xl uppercase mb-4">Llevemos esta voz al Congreso</h4>
+                <p class="mb-8 font-bold text-pc-light uppercase tracking-widest text-sm">Marca Partido Conservador - Número 115</p>
+                <a href="https://www.monicasandovalj.com" class="inline-block bg-pc-light text-brand px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-white transition">Ver cómo votar</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-16 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center gap-6 mb-10">
+                <a href="https://x.com/MonySandov" target="_blank" class="text-gray-400 hover:text-brand text-2xl transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://instagram.com/Monicasandovalj" target="_blank" class="text-gray-400 hover:text-brand text-2xl transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://facebook.com/MonicaSandovalJ" target="_blank" class="text-gray-400 hover:text-brand text-2xl transition"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+            <p class="text-brand font-black text-2xl uppercase">Mónica Sandoval</p>
+            <p class="text-gray-400 text-[10px] font-black uppercase tracking-[0.4em] mt-2">Cámara por Bogotá | Lista Preferente C 115</p>
+            <p class="text-[9px] text-gray-300 uppercase font-bold tracking-[0.2em] mt-8">&copy; 2026 Mónica Sandoval. Publicidad Política Pagada.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
