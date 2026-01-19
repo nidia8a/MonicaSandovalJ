@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mónica Sandoval | Cámara por Bogotá C115</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<!-- Actualizado a Font Awesome 6.4.2 para soportar iconos de X y Threads -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
         
@@ -47,13 +48,87 @@
             right: 25px;
             z-index: 999;
             background: white;
-            padding: 12px 20px;
+            padding: 10px 18px;
             border-radius: 50px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 12px;
             border: 3px solid var(--blue-pc-dark);
+        }
+
+        /* Flip Card Styles Mejoradas */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 320px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .flip-card-front {
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .flip-card-front h3 {
+            font-size: 1.75rem;
+            line-height: 1.1;
+            margin-top: 1rem;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-blur: 5px;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
         }
 
         .audio-player-container {
@@ -81,14 +156,25 @@
             width: 100%;
         }
 
-        .video-card {
-            transition: transform 0.3s ease;
-            cursor: pointer;
+        .social-icon-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-        .video-card:hover { transform: scale(1.03); }
+        .social-icon-btn:hover {
+            transform: translateY(-5px);
+            opacity: 1;
+        }
 
+        /* Estilo para asegurar que los iconos se vean */
+        .social-icon-btn i {
+            display: block;
+        }        
         @media (max-width: 640px) {
             .section-title { font-size: 3rem !important; }
+            .flip-card { height: 280px; }
+            .flip-card-front h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -103,32 +189,31 @@
         </audio>
     </div>
 
-    <!-- Botón Flotante VOTA 115 -->
+    <!-- Botón Flotante VOTA C 115 -->
     <div class="floating-vote">
-        <img src="https://imgur.com/e50lIzf.png" alt="Logo Partido Conservador" class="h-8">
+        <img src="https://i.imgur.com/e50lIzf.png" alt="Logo Partido Conservador" class="h-8">
         <div class="h-8 w-[2px] bg-gray-200"></div>
-        <span class="font-black text-brand text-xl uppercase tracking-tighter">C 115</span>
-        <a href="#votar" class="bg-pc-light text-brand text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-widest hover:bg-brand hover:text-white transition">Instrucciones</a>
+        <span class="font-black text-brand text-lg uppercase tracking-tighter">VOTA</span>
+        <a href="#votar" class="bg-pc-light text-brand text-sm font-black px-5 py-2 rounded-full uppercase tracking-tighter hover:bg-brand hover:text-white transition">C 115</a>
     </div>
 
-    <!-- Navegación Proyectada -->
+    <!-- Navegación -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <img src="https://imgur.com/e50lIzf.png" alt="Logo Partido Conservador" class="h-10">
+                <img src="https://i.imgur.com/e50lIzf.png" alt="Logo Partido Conservador" class="h-10">
                 <div class="text-brand font-black text-xl tracking-tighter leading-none">
                     MÓNICA <span class="text-pc-light">SANDOVAL</span>
                     <div class="text-[9px] text-gray-400 font-bold tracking-[0.2em] mt-1">CÁMARA POR BOGOTÁ</div>
                 </div>
             </div>
             
-            <!-- Menú Ajustado: Más propio y profesional -->
             <div class="hidden lg:flex items-center space-x-8 font-bold text-[10px] uppercase tracking-[0.2em] text-gray-600">
                 <a href="#inicio" class="nav-link hover:text-brand transition">Inicio</a>
-                <a href="#vblog" class="nav-link hover:text-brand transition">Mi Historia</a>
-                <a href="#blog" class="nav-link hover:text-brand transition">Propuestas</a>
-                <a href="#votar" class="nav-link hover:text-brand transition">Cómo Votar</a>
-                <a href="#escucha" class="nav-link hover:text-brand transition text-pc-light">Hablemos</a>
+                <a href="#historia" class="nav-link hover:text-brand transition">Mi Historia</a>
+                <a href="#vblog" class="nav-link hover:text-brand transition">V-Blog</a>
+                <a href="#propuestas" class="nav-link hover:text-brand transition">Propuestas</a>
+                <a href="#votar" class="nav-link hover:text-brand transition">Únete</a>
                 <div class="w-[1px] h-6 bg-gray-200"></div>
                 <span class="text-brand font-black bg-gray-50 px-3 py-1 rounded-md">C-115</span>
             </div>
@@ -144,108 +229,312 @@
                 <div class="inline-block bg-pc-light text-brand px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6">
                     Moviendo a Bogotá con Legalidad
                 </div>
-                <h1 class="font-black text-7xl lg:text-9xl leading-[0.85] mb-8 uppercase tracking-tighter">
+                <h1 class="font-black text-7xl lg:text-9xl leading-[0.85] uppercase tracking-tighter">
                     VAMOS <br> <span class="text-pc-light">JUNTOS.</span>
                 </h1>
+                <div class="text-white font-bold text-sm lg:text-lg uppercase tracking-[0.6em] mb-8 lg:pl-1 opacity-80">
+                    Camino a la victoria
+                </div>
                 <p class="text-xl serif-font mb-10 opacity-90 max-w-lg mx-auto lg:mx-0 leading-relaxed italic border-l-0 lg:border-l-4 border-pc-light lg:pl-6">
                     "Defiendo el transporte como un servicio esencial que mueve a Colombia, y la libertad de empresa como herramienta de prosperidad."
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                    <a href="#votar" class="bg-pc-light text-brand px-12 py-5 rounded-full font-black text-lg shadow-xl uppercase transform hover:scale-105 transition">VOTA C 115</a>
-                    <a href="#vblog" class="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-5 rounded-full font-black text-lg uppercase">Ver V-Blog</a>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-3">
+                    <a href="#historia" class="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-white/20 transition">Mi Historia</a>
+                    <a href="#propuestas" class="bg-white text-brand px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider shadow-lg transform hover:scale-105 transition">Propuestas</a>
+                    <a href="#votar" class="bg-pc-light text-brand px-6 py-3 rounded-full font-black text-sm shadow-lg uppercase tracking-wider transform hover:scale-105 transition">VOTA C 115</a>
                 </div>
             </div>
             <div class="relative hidden lg:block">
-                <img src="https://imgur.com/qwguqCx.png" alt="Mónica Sandoval" class="hero-photo-tilt w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]">
+                <img src="https://i.imgur.com/qwguqCx.png" alt="Mónica Sandoval" class="hero-photo-tilt w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]">
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN V-BLOG / MI HISTORIA -->
-    <section id="vblog" class="py-24 bg-gray-50 overflow-hidden">
+   <!-- SECCIÓN MI HISTORIA -->
+    <section id="historia" class="py-24 bg-gray-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 reveal text-center lg:text-left">
-                <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Liderazgo en Acción</span>
-                <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">Mi Historia en <br> <span class="text-pc-light">Ruta</span></h2>
+            <div class="grid lg:grid-cols-12 gap-12 items-center mb-20">
+                <div class="lg:col-span-4 reveal">
+                    <div class="relative max-w-[280px] mx-auto"> <!-- Imagen un poco más pequeña -->
+                        <div class="absolute -top-4 -left-4 w-20 h-20 bg-pc-light rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+                        <img src="https://i.imgur.com/DFalMGx.png" alt="Mónica Sandoval Historia" class="rounded-[2.5rem] shadow-2xl relative z-10 w-full border-4 border-white transform -rotate-3 hover:rotate-0 transition duration-500">
+                    </div>
+                </div>
+                <div class="lg:col-span-8 reveal">
+                    <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Liderazgo en Acción</span>
+                    <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none mb-6">Mi Historia <br> <span class="text-pc-light">en Ruta</span></h2>
+                    <p class="text-lg text-gray-600 serif-font italic leading-relaxed mb-8">
+                        "No vengo a prometer desde un escritorio. Vengo a representar desde la ruta, desde la experiencia y desde el corazón transportador que heredé y elegí convertir en causa."
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex-1 border-b-4 border-b-pc-light">
+                            <span class="block text-brand font-black text-3xl">+20</span>
+                            <span class="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Años de experiencia</span>
+                        </div>
+                        <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex-1 border-b-4 border-b-brand">
+                            <span class="block text-brand font-black text-3xl">Madre</span>
+                            <span class="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Su mayor fuerza</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="grid md:grid-cols-4 gap-6">
-                <!-- VIDEO 1: CONOCE A MONICA -->
-                <div class="video-card bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
-                    <div class="aspect-[9/16] bg-black relative">
-                        <video class="w-full h-full object-cover" controls poster="https://imgur.com/qwguqCx.png">
-                            <source src="https://i.imgur.com/hhzpnCJ.mp4" type="video/mp4">
-                            Tu navegador no soporta el video.
-                        </video>
-                        <div class="absolute bottom-6 left-6 right-6 text-white text-xs font-black leading-tight uppercase bg-brand/60 p-2 backdrop-blur-sm rounded-lg pointer-events-none text-center">
-                            Conoce a Mónica
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- TARJETA 1: ORIGEN (Blanco) -->
+                <div class="flip-card reveal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100">
+                            <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-home text-4xl text-pc-light"></i>
+                            </div>
+                            <h3 class="font-black text-brand uppercase tracking-tighter">Raíces y Origen</h3>
+                            <p class="text-gray-400 text-xs uppercase font-bold mt-4 tracking-widest">Fusagasugá & Boyacá</p>
+                        </div>
+                        <div class="flip-card-back bg-brand text-white">
+                            <p class="text-base leading-relaxed px-4">
+                                Vengo de <span class="text-pc-light font-bold">Fusagasugá</span>, de una familia de clase media. Mis raíces son transportadoras boyacenses: los Sandoval y los Suárez, quienes me enseñaron que el <span class="text-pc-light font-bold">trabajo digno</span> se gana temprano.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="video-card bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
-                    <div class="aspect-[9/16] bg-pc-light relative flex items-center justify-center">
-                        <i class="fas fa-play text-brand text-5xl opacity-50"></i>
-                        <div class="absolute bottom-6 left-6 right-6 text-brand text-xs font-bold leading-tight uppercase text-center">Defensa del transporte</div>
+                <!-- TARJETA 2: MOTIVACIÓN (Azul Cyan) -->
+                <div class="flip-card reveal" style="transition-delay: 0.1s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-pc-light">
+                            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-heart text-4xl text-brand"></i>
+                            </div>
+                            <h3 class="font-black text-white uppercase tracking-tighter">Madre Soltera</h3>
+                            <p class="text-brand/60 text-xs uppercase font-bold mt-4 tracking-widest">Su motor principal</p>
+                        </div>
+                        <div class="flip-card-back bg-white text-gray-700 border-4 border-pc-light">
+                            <p class="text-base leading-relaxed px-4">
+                                Soy madre soltera de una hija que es mi mayor fuerza. Sé lo que es abrirse camino en Bogotá con <span class="text-brand font-bold">disciplina</span> para sacar adelante a los nuestros, defendiendo la <span class="text-brand font-bold">vida y el futuro</span>.
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="video-card bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
-                    <div class="aspect-[9/16] bg-brand relative flex items-center justify-center">
-                        <i class="fas fa-play text-white text-5xl opacity-50"></i>
-                        <div class="absolute bottom-6 left-6 right-6 text-white text-xs font-bold leading-tight uppercase text-center">Ruta por Bogotá</div>
+
+                <!-- TARJETA 3: PROFESIÓN (Azul Marino) -->
+                <div class="flip-card reveal" style="transition-delay: 0.2s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-brand">
+                            <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-balance-scale text-4xl text-pc-light"></i>
+                            </div>
+                            <h3 class="font-black text-white uppercase tracking-tighter">Abogada de Ruta</h3>
+                            <p class="text-pc-light text-xs uppercase font-bold mt-4 tracking-widest">Sector Transporte</p>
+                        </div>
+                        <div class="flip-card-back bg-pc-light text-brand">
+                            <p class="text-base leading-relaxed px-4">
+                                Como abogada, he dedicado mi vida al <span class="text-white font-bold">sector transportador</span>. Entiendo que detrás de cada vehículo hay una <span class="text-white font-bold">familia</span> y un crédito que proteger frente a un sistema injusto.
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="video-card bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
-                    <div class="aspect-[9/16] bg-pc-light relative flex items-center justify-center">
-                        <i class="fas fa-play text-brand text-5xl opacity-50"></i>
-                        <div class="absolute bottom-6 left-6 right-6 text-brand text-xs font-bold leading-tight uppercase text-center">Garantías Jurídicas</div>
+
+                <!-- TARJETA 4: CONVICCIÓN (Azul Marino) -->
+                <div class="flip-card reveal" style="transition-delay: 0.3s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-brand">
+                            <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-shield-alt text-4xl text-pc-light"></i>
+                            </div>
+                            <h3 class="font-black text-white uppercase tracking-tighter">Servicio Esencial</h3>
+                            <p class="text-pc-light text-xs uppercase font-bold mt-4 tracking-widest">Defensa de la Vida</p>
+                        </div>
+                        <div class="flip-card-back bg-white text-gray-700 border-4 border-brand">
+                            <p class="text-base leading-relaxed px-4">
+                                El transporte es el <span class="text-brand font-bold">servicio esencial</span> que sostiene a Colombia. Mi compromiso es exigir <span class="text-brand font-bold">seguridad real</span> para quienes trabajan incansablemente en las carreteras.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TARJETA 5: TRAYECTORIA (Blanco) -->
+                <div class="flip-card reveal" style="transition-delay: 0.4s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100">
+                            <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-users text-4xl text-brand"></i>
+                            </div>
+                            <h3 class="font-black text-brand uppercase tracking-tighter">Liderazgo Real</h3>
+                            <p class="text-gray-400 text-xs uppercase font-bold mt-4 tracking-widest">Desde 1991</p>
+                        </div>
+                        <div class="flip-card-back bg-pc-light text-brand">
+                            <p class="text-base leading-relaxed px-4">
+                                Participé en la <span class="text-white font-bold">Constituyente de 1991</span>. Mi convicción: cuando se lidera de verdad, se <span class="text-white font-bold">escucha</span>; y cuando se representa, se <span class="text-white font-bold">cumple</span> a cabalidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TARJETA 6: COMPROMISO (Azul Cyan) -->
+                <div class="flip-card reveal" style="transition-delay: 0.5s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-pc-light">
+                            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-vote-yea text-4xl text-brand"></i>
+                            </div>
+                            <h3 class="font-black text-white uppercase tracking-tighter">Vota C 115</h3>
+                            <p class="text-brand/60 text-xs uppercase font-bold mt-4 tracking-widest">Dignidad y Unión</p>
+                        </div>
+                        <div class="flip-card-back bg-brand text-white">
+                            <p class="text-base leading-relaxed px-4">
+                                Llegaré al Congreso para <span class="text-pc-light font-bold">humanizar el transporte</span> y defender la libertad de empresa. Tu apoyo es un mensaje de <span class="text-pc-light font-bold">unión</span>. ¡Marca con confianza C 115!
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN PROPUESTAS -->
-    <section id="blog" class="py-24 bg-white">
+    <!-- V-Blog Section -->
+    <section id="vblog" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6 reveal">
-                <div class="max-w-2xl text-center lg:text-left">
-                    <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Visión de Ciudad</span>
-                    <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">Nuestras <br> <span class="text-pc-light">Propuestas</span></h2>
-                </div>
-                <a href="#" class="bg-brand text-white px-8 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-pc-light hover:text-brand transition shadow-md">Ver todas las propuestas</a>
+            <div class="text-center mb-16 reveal">
+                <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Contenido Multimedia</span>
+                <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">V-Blog & <span class="text-pc-light">Recursos</span></h2>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12">
-                <article class="group reveal">
-                    <div class="h-[400px] rounded-[3rem] overflow-hidden mb-8 shadow-2xl bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1541888941255-081d746dbdba?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Movilidad">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Tarjeta 1: Video -->
+                <div class="group cursor-pointer reveal" onclick="openModal('video1')">
+                    <div class="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
+                        <img src="https://imgur.com/GeUCTUV.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-brand/40 flex items-center justify-center">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition">
+                                <i class="fas fa-play text-brand text-2xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <h3 class="text-2xl font-black uppercase">Visión Bogotá</h3>
+                        </div>
                     </div>
-                    <time class="text-[10px] font-black uppercase text-gray-400 tracking-[0.3em] mb-4 block">Movilidad Sostenible</time>
-                    <h3 class="text-3xl font-black text-brand mb-4 group-hover:text-pc-light transition">Formalización: El motor de la seguridad vial.</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6 italic">"Buscamos que el transporte público sea legal, moderno y digno para quienes lo operan."</p>
-                    <span class="text-brand font-black text-xs uppercase border-b-2 border-pc-light pb-1 cursor-pointer">Seguir leyendo</span>
-                </article>
+                </div>
 
-                <article class="group reveal" style="transition-delay: 0.1s;">
-                    <div class="h-[400px] rounded-[3rem] overflow-hidden mb-8 shadow-2xl bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2080&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Seguridad">
+                <!-- Tarjeta 2: Jingle -->
+                <div class="group cursor-pointer reveal" style="transition-delay: 0.1s;" onclick="openModal('video2')">
+                    <div class="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
+                        <img src="https://imgur.com/YyX2viL.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-pc-light/40 flex items-center justify-center">
+                            <div class="w-20 h-20 bg-brand rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition">
+                                <i class="fas fa-music text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <h3 class="text-2xl font-black uppercase">Jingle Oficial</h3>
+                        </div>
                     </div>
-                    <time class="text-[10px] font-black uppercase text-gray-400 tracking-[0.3em] mb-4 block">Seguridad Ciudadana</time>
-                    <h3 class="text-3xl font-black text-brand mb-4 group-hover:text-pc-light transition">Protección integral para los transportadores.</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6 italic">"Nuestra meta es vigilancia técnica y jurídica para que cada transportador regrese seguro a casa."</p>
-                    <span class="text-brand font-black text-xs uppercase border-b-2 border-pc-light pb-1 cursor-pointer">Seguir leyendo</span>
-                </article>
+                </div>
+
+                <!-- Tarjeta 3: Artículo -->
+                <div class="group cursor-pointer reveal" style="transition-delay: 0.2s;" onclick="openModal('article1')">
+                    <div class="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
+                        <img src="https://imgur.com/4s1fXou.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gray-900/40 flex items-center justify-center">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition">
+                                <i class="fas fa-file-alt text-brand text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <h3 class="text-2xl font-black uppercase">Opinión</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Cómo votar -->
+    <!-- SECCIÓN PROPUESTAS (REDISEÑADA A FLIP CARDS) -->
+    <section id="propuestas" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-pc-light font-black tracking-[0.3em] uppercase text-xs mb-4 block">Visión de Ciudad</span>
+                <h2 class="font-black text-5xl lg:text-6xl text-brand uppercase leading-none">Nuestras <br> <span class="text-pc-light">Propuestas</span></h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- PROPUESTA 1: TRANSPORTE LEGAL -->
+                <div class="flip-card reveal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100 p-0 overflow-hidden">
+                            <div class="h-1/2 w-full">
+                                <img src="https://imgur.com/nFIh1Z3.png" class="w-full h-full object-cover" alt="Defensa del Transporte Legal">
+                            </div>
+                            <div class="h-1/2 flex flex-col justify-center p-6">
+                                <h3 class="font-black text-brand uppercase tracking-tighter leading-tight">Defensa del Transporte Legal</h3>
+                                <p class="text-pc-light text-[10px] font-bold uppercase mt-2 tracking-widest">Garantía Jurídica</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-brand text-white text-left">
+                            <h4 class="font-black text-pc-light uppercase text-sm mb-4">Moviendo a Bogotá</h4>
+                            <p class="text-base leading-relaxed serif-font italic">
+                                "Luchamos por la formalidad y el respeto a quienes cumplen la ley. Sin legalidad no hay progreso real en nuestras vías."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROPUESTA 2: LIBRE EMPRESA -->
+                <div class="flip-card reveal" style="transition-delay: 0.1s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100 p-0 overflow-hidden">
+                            <div class="h-1/2 w-full">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Libre Empresa">
+                            </div>
+                            <div class="h-1/2 flex flex-col justify-center p-6">
+                                <h3 class="font-black text-brand uppercase tracking-tighter leading-tight">Defensa de la Libre Empresa</h3>
+                                <p class="text-pc-light text-[10px] font-bold uppercase mt-2 tracking-widest">Prosperidad Económica</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-pc-light text-brand text-left">
+                            <h4 class="font-black text-brand uppercase text-sm mb-4">Motor de Cambio</h4>
+                            <p class="text-base leading-relaxed serif-font italic">
+                                "Protegemos la libertad de emprender como herramienta fundamental para generar empleo y bienestar en cada rincón de la ciudad."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROPUESTA 3: SEGURIDAD VIAL -->
+                <div class="flip-card reveal" style="transition-delay: 0.2s;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-gray-100 p-0 overflow-hidden">
+                            <div class="h-1/2 w-full">
+                                <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2080&auto=format&fit=crop" class="w-full h-full object-cover" alt="Seguridad Vial">
+                            </div>
+                            <div class="h-1/2 flex flex-col justify-center p-6">
+                                <h3 class="font-black text-brand uppercase tracking-tighter leading-tight">Formalización & Seguridad Vial</h3>
+                                <p class="text-pc-light text-[10px] font-bold uppercase mt-2 tracking-widest">Protección Integral</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-brand text-white text-left">
+                            <h4 class="font-black text-pc-light uppercase text-sm mb-4">Vías Seguras</h4>
+                            <p class="text-base leading-relaxed serif-font italic">
+                                "La formalización es el motor que nos permite exigir y garantizar una seguridad vial técnica para conductores y peatones."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Cómo votar / Únete -->
     <section id="votar" class="py-24 bg-brand text-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
                 <h2 class="font-black text-5xl lg:text-7xl mb-4 leading-none uppercase">Es tiempo de marcar <br> <span class="text-pc-light">Mónica Sandoval</span></h2>
-                <p class="text-white/60 font-bold uppercase tracking-widest text-sm">Sigue estos tres pasos sencillos en el tarjetón</p>
+                <p class="text-white/60 font-bold uppercase tracking-widest text-sm mb-4">Sigue estos tres pasos sencillos en el tarjetón</p>
+                <div class="flex flex-col items-center gap-2">
+                    <a href="https://www.registraduria.gov.co/Lugar-de-votacion.html" target="_blank" class="text-pc-light font-black underline hover:text-white transition decoration-2 underline-offset-4">
+                        <i class="fas fa-map-marker-alt mr-2"></i>REVISA TU PUNTO DE VOTACIÓN AQUÍ
+                    </a>
+                    <p class="text-xs font-bold uppercase tracking-widest text-white/80">¡Y recuerda cuidar siempre tu cédula de ciudadanía!</p>
+                </div>
             </div>
             
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -264,65 +553,202 @@
                     </div>
                 </div>
 
-                <div class="reveal">
-                    <div class="bg-white p-6 rounded-[3rem] shadow-2xl border-8 border-pc-light/20 relative max-w-sm mx-auto">
-                        <img src="https://imgur.com/NZBJ3SM.png" alt="Instrucción Voto C115" class="w-full h-auto rounded-[2rem]">
-                        <div class="absolute -bottom-6 -right-6 bg-pc-light text-brand px-10 py-6 rounded-3xl shadow-2xl border-4 border-brand">
-                            <p class="text-5xl font-black leading-none text-center">C 115</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- TARJETÓN / INFOGRAFÍA (CLICK) -->
+<div class="reveal">
+  <div onclick="openInfografia()" class="block group cursor-pointer">
+    <div class="bg-white p-6 rounded-[3rem] shadow-2xl border-8 border-pc-light/20 relative max-w-sm mx-auto transition-all duration-500 group-hover:border-pc-light">
+      <img src="https://i.imgur.com/NZBJ3SM.png" alt="Instrucción Voto C115" class="w-full h-auto rounded-[2rem] group-hover:opacity-90 transition">
+      <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+        <div class="bg-brand/80 text-white px-6 py-3 rounded-full font-black text-xs uppercase tracking-widest shadow-2xl">
+          Ver Infografía
+        </div>
+      </div>
+      <div class="absolute -bottom-6 -right-6 bg-pc-light text-brand px-10 py-6 rounded-3xl shadow-2xl border-4 border-brand group-hover:scale-110 transition">
+        <p class="text-5xl font-black leading-none text-center">C 115</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL INFOGRAFÍA -->
+<div id="infografiaModal" class="fixed inset-0 z-[9999] hidden">
+  <div class="absolute inset-0 bg-black/70" onclick="closeInfografia()"></div>
+
+  <div class="relative z-[10000] w-[95vw] max-w-5xl mx-auto mt-8 md:mt-16">
+    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between px-4 py-3 border-b">
+        <p class="font-extrabold text-brand text-sm md:text-base">Infografía</p>
+        <button onclick="closeInfografia()" class="text-brand font-black px-3 py-1 rounded-xl hover:bg-gray-100">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-3 md:p-5 bg-gray-50">
+        <img
+          src="https://i.imgur.com/BzBT601.png"
+          alt="Infografía"
+          class="w-full h-auto rounded-2xl"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openInfografia() {
+    const modal = document.getElementById('infografiaModal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeInfografia() {
+    const modal = document.getElementById('infografiaModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // Cerrar con tecla ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeInfografia();
+  });
+</script>
+
             </div>
         </div>
-    </section>
+</section>
 
-    <!-- Hablemos (Contacto) -->
-    <section id="escucha" class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <h2 class="font-black text-5xl text-brand uppercase mb-12 leading-none">HABLEMOS DE BOGOTÁ <br> <span class="text-pc-light text-3xl uppercase">Tu voz es mi ruta</span></h2>
-            <form class="space-y-4">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Nombre completo" class="w-full bg-gray-50 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-pc-light border border-gray-100">
-                    <input type="text" placeholder="WhatsApp / Teléfono" class="w-full bg-gray-50 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-pc-light border border-gray-100">
+   <!-- Footer Actualizado con X y Threads -->
+    <footer class="bg-gray-50 py-20 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col items-center text-center">
+                
+                <!-- Redes Sociales (Iconos Sutiles) -->
+                <div class="flex flex-wrap justify-center items-center gap-8 mb-10">
+                    <!-- X (Twitter) -->
+                    <a href="https://x.com/MonySandov" target="_blank" class="social-icon-btn text-gray-400 hover:text-black" title="X (Twitter)">
+                        <i class="fa-brands fa-x-twitter text-2xl"></i>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/Monicasandovalj" target="_blank" class="social-icon-btn text-gray-400 hover:text-pink-600" title="Instagram">
+                        <i class="fa-brands fa-instagram text-2xl"></i>
+                    </a>
+                    
+                    <!-- Facebook -->
+                    <a href="https://facebook.com/MonicaSandovalJ" target="_blank" class="social-icon-btn text-gray-400 hover:text-blue-700" title="Facebook">
+                        <i class="fa-brands fa-facebook-f text-2xl"></i>
+                    </a>
+                    
+                    <!-- YouTube -->
+                    <a href="https://youtube.com/@monicasandovalj" target="_blank" class="social-icon-btn text-gray-400 hover:text-red-600" title="YouTube">
+                        <i class="fa-brands fa-youtube text-2xl"></i>
+                    </a>
+                    
+                    <!-- Threads -->
+                    <a href="https://www.threads.net/@monicasandovalj" target="_blank" class="social-icon-btn text-gray-400 hover:text-black" title="Threads">
+                        <i class="fa-brands fa-threads text-2xl"></i>
+                    </a>
+                    
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/573239244115" target="_blank" class="social-icon-btn text-gray-400 hover:text-green-500" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    </a>
                 </div>
-                <textarea rows="4" placeholder="Cuéntame tu problemática o propuesta para la ciudad..." class="w-full bg-gray-50 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-pc-light border border-gray-100"></textarea>
-                <button type="button" class="w-full bg-brand text-white py-5 rounded-2xl font-black text-lg uppercase shadow-xl hover:bg-pc-light hover:text-brand transition duration-300">Enviar Propuesta</button>
-            </form>
-            <div class="mt-12 flex justify-center items-center gap-4 text-gray-400">
-                <i class="fas fa-envelope text-pc-light"></i>
-                <p class="text-sm font-bold uppercase tracking-widest text-center">hablaconmigo@monicasandovalj.com</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 py-20 text-center border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center gap-6 mb-12">
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-tiktok"></i></a>
-                <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white transition shadow-sm"><i class="fab fa-whatsapp"></i></a>
+                <!-- Datos de Campaña -->
+                <div class="mb-8">
+                    <h3 class="text-brand font-black text-3xl uppercase tracking-tighter">Mónica Sandoval</h3>
+                    <p class="text-gray-400 text-[10px] font-black uppercase tracking-[0.4em] mt-2">Cámara por Bogotá | Lista Preferente C 115</p>
+                </div>
+
+                <!-- Contacto Directo -->
+                <div class="flex flex-col md:flex-row gap-6 md:gap-12 items-center text-[11px] font-black uppercase tracking-widest text-brand/70 mb-12">
+                    <a href="https://wa.me/573239244115" target="_blank" class="hover:text-pc-light transition">
+                        <i class="fas fa-phone-alt mr-2 text-pc-light"></i> 323 9244 115
+                    </a>
+                    <a href="mailto:hablaconmigo@monicasandoval.com" class="hover:text-pc-light transition">
+                        <i class="fas fa-envelope mr-2 text-pc-light"></i> hablaconmigo@monicasandoval.com
+                    </a>
+                </div>
+
+                <div class="w-16 h-[2px] bg-gray-200 mb-8"></div>
+                <p class="text-[9px] text-gray-300 uppercase font-bold tracking-[0.2em]">&copy; 2026 Mónica Sandoval. Publicidad Política Pagada.</p>
             </div>
-            <p class="text-brand font-black text-2xl mb-1 uppercase tracking-tighter text-center">Mónica Sandoval</p>
-            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mb-12 text-center">Cámara por Bogotá | Lista Preferente C 115</p>
-            <div class="inline-block border border-gray-200 px-6 py-2 rounded-full mb-8">
-                <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest text-center">Publicidad Política Pagada - Partido Conservador Colombiano</p>
-            </div>
-            <p class="text-[8px] text-gray-300 uppercase tracking-[0.2em]">&copy; 2024 Mónica Sandoval. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <!-- Modal Multimedia -->
+    <div id="mediaModal" class="modal">
+        <div class="fixed top-6 right-6 text-white text-3xl cursor-pointer z-[2100]" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="flex items-center justify-center min-h-screen p-6">
+            <div id="modalContainer" class="w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl"></div>
+        </div>
+    </div>
+
     <script>
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveal.getBoundingClientRect().top;
-                if (revealTop < windowHeight - 100) reveal.classList.add('active');
+        // Animaciones de aparición
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        });
-        document.addEventListener('DOMContentLoaded', () => window.dispatchEvent(new Event('scroll')));
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Modales
+        const modal = document.getElementById('mediaModal');
+        const container = document.getElementById('modalContainer');
+
+        function openModal(type) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            /* OJO EN LO QUE CAMBIÓ: Ahora ambos videos comparten la misma estructura visual */
+            if (type === 'video1' || type === 'video2') {
+                const videoSrc = type === 'video1' ? "https://i.imgur.com/hhzpnCJ.mp4" : "https://i.imgur.com/vD9CHYh.mp4";
+                const videoTitle = type === 'video1' ? "Visión Bogotá" : "Jingle Oficial";
+                
+                /* NUEVO: Contenedor unificado para videos con encabezado decorativo */
+                container.className = "modal-container bg-black max-w-4xl mx-auto shadow-2xl border-4 border-white/10";
+                container.innerHTML = `
+                    <div class="bg-brand py-3 px-8 flex justify-between items-center">
+                        <span class="text-white font-black text-[10px] uppercase tracking-widest">Reproduciendo: ${videoTitle}</span>
+                    </div>
+                    <div class="aspect-video w-full bg-black">
+                        <video controls autoplay class="w-full h-full">
+                            <source src="${videoSrc}" type="video/mp4">
+                        </video>
+                    </div>`;
+            } else if (type === 'article1') {
+                /* OJO EN LO QUE CAMBIÓ: El botón de lectura completa ahora es el protagonista */
+                container.className = "modal-container bg-white max-w-3xl";
+                container.innerHTML = `
+                    <div class="p-8 md:p-16">
+                        <span class="inline-block bg-pc-light text-brand px-4 py-1 rounded-full text-[10px] font-black uppercase mb-6">Opinión</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-brand uppercase leading-none mb-8">El Transporte: <br><span class="text-pc-light">Pilar Económico</span></h2>
+                        <div class="serif-font text-lg md:text-xl text-gray-700 space-y-6 leading-relaxed mb-10">
+                            <p class="font-bold italic text-brand border-l-4 border-brand pl-4">"No podemos ver el transporte solo como un negocio, es la vena que permite que Bogotá viva."</p>
+                            <p>Mi compromiso es con los conductores y con el ciudadano que merece rutas seguras y eficientes. Bogotá no aguanta más improvisación.</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <a href="https://nidia8a.github.io/MonicaSandovalJ/El_transporte.html" class="bg-brand text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest shadow-xl hover:bg-pc-light hover:text-brand transition duration-300">
+                                Lee el artículo completo
+                            </a>
+                        </div>
+                    </div>`;
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            container.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = (e) => { if (e.target == modal) closeModal(); }
     </script>
 </body>
 </html>
